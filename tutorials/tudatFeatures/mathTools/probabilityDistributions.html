@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
 
@@ -196,10 +198,10 @@
 <p>In Tudat, we have a number of options related to the use of probability distributions, as well as the generation of random variables from these probability distributions. Many of these distributions are taken from the Boost libraries, some we have implemented ourselves.</p>
 <div class="section" id="implementation-of-a-probability-distribution">
 <h2>6.3.1. Implementation of a Probability Distribution<a class="headerlink" href="#implementation-of-a-probability-distribution" title="Permalink to this headline">¶</a></h2>
-<p>To represent a probability distribution with a given probability distribution function (PDF) and associated cumulative distribution function (CDF), we have defined the <code class="xref py py-class docutils literal"><span class="pre">ContinuousProbabilityDistribution</span></code> base class. From this class, we have two ‘branched’ of derived classes:</p>
+<p>To represent a probability distribution with a given probability distribution function (PDF) and associated cumulative distribution function (CDF), we have defined the <code class="xref py py-class docutils literal notranslate"><span class="pre">ContinuousProbabilityDistribution</span></code> base class. From this class, we have two ‘branched’ of derived classes:</p>
 <blockquote>
 <div><ul class="simple">
-<li>One set for which we can compute the inverse CDF (with derived class <code class="xref py py-class docutils literal"><span class="pre">InvertibleContinuousProbabilityDistribution</span></code>).</li>
+<li>One set for which we can compute the inverse CDF (with derived class <code class="xref py py-class docutils literal notranslate"><span class="pre">InvertibleContinuousProbabilityDistribution</span></code>).</li>
 <li>One set for which we cannot compute the inverse CDF.</li>
 </ul>
 </div></blockquote>
@@ -215,7 +217,7 @@
 </ul>
 </div></blockquote>
 <p>Each of these distributions can be create through the same Tudat interface. Below we given an example of creating a uniform distribution with bounds at -1 and 2.5:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">statistics</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">statistics</span><span class="p">;</span>
 
 <span class="c1">// Define properties of distribution</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="kt">double</span> <span class="o">&gt;</span> <span class="n">parameters</span><span class="p">;</span>
@@ -227,23 +229,23 @@
         <span class="n">createBoostRandomVariable</span><span class="p">(</span> <span class="n">uniform_boost_distribution</span><span class="p">,</span> <span class="n">parameters</span> <span class="p">);</span>
 </pre></div>
 </div>
-<p>where the <code class="docutils literal"><span class="pre">probabilityDistribution</span></code> object is created by the <code class="docutils literal"><span class="pre">createBoostRandomVariable</span></code> function, which takes two inputs:</p>
+<p>where the <code class="docutils literal notranslate"><span class="pre">probabilityDistribution</span></code> object is created by the <code class="docutils literal notranslate"><span class="pre">createBoostRandomVariable</span></code> function, which takes two inputs:</p>
 <blockquote>
 <div><ul class="simple">
 <li>The type of probability distribution variable, defined by a Tudat-defined enumeration (all the options are listed below).</li>
 <li>A list of parameters that define the properties of the distribution.</li>
 </ul>
 </div></blockquote>
-<p>The <code class="xref py py-class docutils literal"><span class="pre">InvertibleContinuousProbabilityDistribution</span></code> probability distribution comes with three functions that you can used:</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">InvertibleContinuousProbabilityDistribution</span></code> probability distribution comes with three functions that you can used:</p>
 <blockquote>
 <div><ul class="simple">
-<li>The <code class="docutils literal"><span class="pre">evaluatePdf</span></code> function, giving the PDF at a given point in sample space.</li>
-<li>The <code class="docutils literal"><span class="pre">evaluateCdf</span></code> function, giving the CDF at a given point in sample space.</li>
-<li>The <code class="docutils literal"><span class="pre">evaluateInverseCdf</span></code> function, giving the point in sample space for a given CDF values (which must be between 0 and 1). Note that this is also referred to as a quantile function.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">evaluatePdf</span></code> function, giving the PDF at a given point in sample space.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">evaluateCdf</span></code> function, giving the CDF at a given point in sample space.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">evaluateInverseCdf</span></code> function, giving the point in sample space for a given CDF values (which must be between 0 and 1). Note that this is also referred to as a quantile function.</li>
 </ul>
 </div></blockquote>
 <p>For instance, we can perform the following:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">localPdf</span> <span class="o">=</span> <span class="n">probabilityDistribution</span><span class="o">-&gt;</span><span class="n">evaluatePdf</span><span class="p">(</span> <span class="mf">1.6</span> <span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">localPdf</span> <span class="o">=</span> <span class="n">probabilityDistribution</span><span class="o">-&gt;</span><span class="n">evaluatePdf</span><span class="p">(</span> <span class="mf">1.6</span> <span class="p">);</span>
 <span class="kt">double</span> <span class="n">localCdf</span> <span class="o">=</span> <span class="n">probabilityDistribution</span><span class="o">-&gt;</span><span class="n">evaluateCdf</span><span class="p">(</span> <span class="mf">1.6</span> <span class="p">);</span>
 <span class="kt">double</span> <span class="n">samplePoint</span> <span class="o">=</span> <span class="n">probabilityDistribution</span><span class="o">-&gt;</span><span class="n">evaluateInverseCdf</span><span class="p">(</span> <span class="mf">0.8</span> <span class="p">);</span>
 </pre></div>
@@ -252,13 +254,13 @@
 </div>
 <div class="section" id="creating-probability-distributions">
 <h2>6.3.2. Creating Probability Distributions<a class="headerlink" href="#creating-probability-distributions" title="Permalink to this headline">¶</a></h2>
-<p>To create one of the 6 distributions listed above, for each of which the invertible CDF can be computed, call the <code class="docutils literal"><span class="pre">createBoostRandomVariable</span></code> with the following input:</p>
+<p>To create one of the 6 distributions listed above, for each of which the invertible CDF can be computed, call the <code class="docutils literal notranslate"><span class="pre">createBoostRandomVariable</span></code> with the following input:</p>
 <blockquote>
 <div><ul>
 <li><p class="first"><strong>Uniform distribution</strong></p>
 <blockquote>
 <div><ul>
-<li><p class="first">First argument: <code class="docutils literal"><span class="pre">uniform_boost_distribution</span></code></p>
+<li><p class="first">First argument: <code class="docutils literal notranslate"><span class="pre">uniform_boost_distribution</span></code></p>
 </li>
 <li><p class="first">Second argument: vector containing (in order):</p>
 <blockquote>
@@ -274,13 +276,13 @@
 <li><p class="first"><strong>Normal distribution</strong></p>
 <blockquote>
 <div><ul>
-<li><p class="first">First argument: <code class="docutils literal"><span class="pre">normal_boost_distribution</span></code></p>
+<li><p class="first">First argument: <code class="docutils literal notranslate"><span class="pre">normal_boost_distribution</span></code></p>
 </li>
 <li><p class="first">Second argument: vector containing (in order):</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Mean (<span class="math">\(\mu\)</span>) of distribution</li>
-<li>Standard deviation (<span class="math">\(\sigma\)</span>) of distribution</li>
+<li>Mean (<span class="math notranslate nohighlight">\(\mu\)</span>) of distribution</li>
+<li>Standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) of distribution</li>
 </ol>
 </div></blockquote>
 </li>
@@ -290,12 +292,12 @@
 <li><p class="first"><strong>Exponential distribution</strong></p>
 <blockquote>
 <div><ul>
-<li><p class="first">First argument: <code class="docutils literal"><span class="pre">exponential_boost_distribution</span></code></p>
+<li><p class="first">First argument: <code class="docutils literal notranslate"><span class="pre">exponential_boost_distribution</span></code></p>
 </li>
 <li><p class="first">Second argument: vector containing (in order):</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><span class="math">\(\lambda\)</span> parameter of exponential distribution</li>
+<li><span class="math notranslate nohighlight">\(\lambda\)</span> parameter of exponential distribution</li>
 </ol>
 </div></blockquote>
 </li>
@@ -305,13 +307,13 @@
 <li><p class="first"><strong>Gamma distribution</strong></p>
 <blockquote>
 <div><ul>
-<li><p class="first">First argument: <code class="docutils literal"><span class="pre">gamma_boost_distribution</span></code></p>
+<li><p class="first">First argument: <code class="docutils literal notranslate"><span class="pre">gamma_boost_distribution</span></code></p>
 </li>
 <li><p class="first">Second argument: vector containing (in order):</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>shape (<span class="math">\(k\)</span>) parameter of distribution</li>
-<li>scale (<span class="math">\(\theta\)</span>) parameter of distribution</li>
+<li>shape (<span class="math notranslate nohighlight">\(k\)</span>) parameter of distribution</li>
+<li>scale (<span class="math notranslate nohighlight">\(\theta\)</span>) parameter of distribution</li>
 </ol>
 </div></blockquote>
 </li>
@@ -321,13 +323,13 @@
 <li><p class="first"><strong>Lognormal distribution</strong></p>
 <blockquote>
 <div><ul>
-<li><p class="first">First argument: <code class="docutils literal"><span class="pre">lognormal_boost_distribution</span></code></p>
+<li><p class="first">First argument: <code class="docutils literal notranslate"><span class="pre">lognormal_boost_distribution</span></code></p>
 </li>
 <li><p class="first">Second argument: vector containing (in order):</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>location (<span class="math">\(\mu\)</span>) parameter of distribution</li>
-<li>scale (<span class="math">\(\sigma\)</span>) parameter of distribution</li>
+<li>location (<span class="math notranslate nohighlight">\(\mu\)</span>) parameter of distribution</li>
+<li>scale (<span class="math notranslate nohighlight">\(\sigma\)</span>) parameter of distribution</li>
 </ol>
 </div></blockquote>
 </li>
@@ -337,13 +339,13 @@
 <li><p class="first"><strong>Beta distribution</strong></p>
 <blockquote>
 <div><ul>
-<li><p class="first">First argument: <code class="docutils literal"><span class="pre">beta_boost_distribution</span></code></p>
+<li><p class="first">First argument: <code class="docutils literal notranslate"><span class="pre">beta_boost_distribution</span></code></p>
 </li>
 <li><p class="first">Second argument: vector containing (in order):</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><span class="math">\(\alpha\)</span> parameter of distribution</li>
-<li><span class="math">\(\beta\)</span> parameter of distribution</li>
+<li><span class="math notranslate nohighlight">\(\alpha\)</span> parameter of distribution</li>
+<li><span class="math notranslate nohighlight">\(\beta\)</span> parameter of distribution</li>
 </ol>
 </div></blockquote>
 </li>
@@ -366,12 +368,12 @@
 <p>For each of the invertible random variables described above, you can easily create a random number generator which generates variables according to that distribution. For the 6 boost distributions listed above, you can use the same input (type and parameters) as listed above. We provide two interfaces for random variable generation:</p>
 <blockquote>
 <div><ul class="simple">
-<li>A class <code class="xref py py-class docutils literal"><span class="pre">ContinuousRandomVariableGenerator</span></code>, with a <code class="docutils literal"><span class="pre">getRandomVariableValue</span></code> that produces random numbers.</li>
-<li>A boost function <code class="docutils literal"><span class="pre">std::function&lt;</span> <span class="pre">double(</span> <span class="pre">)</span> <span class="pre">&gt;</span></code> which produces random numbers every time it is called.</li>
+<li>A class <code class="xref py py-class docutils literal notranslate"><span class="pre">ContinuousRandomVariableGenerator</span></code>, with a <code class="docutils literal notranslate"><span class="pre">getRandomVariableValue</span></code> that produces random numbers.</li>
+<li>A boost function <code class="docutils literal notranslate"><span class="pre">std::function&lt;</span> <span class="pre">double(</span> <span class="pre">)</span> <span class="pre">&gt;</span></code> which produces random numbers every time it is called.</li>
 </ul>
 </div></blockquote>
 <p>We illustrate these two options with some examples below.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">statistics</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">statistics</span><span class="p">;</span>
 
 <span class="c1">// Define properties of distribution</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="kt">double</span> <span class="o">&gt;</span> <span class="n">parameters</span><span class="p">;</span>
@@ -461,7 +463,8 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

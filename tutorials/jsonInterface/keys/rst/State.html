@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
   
 
@@ -94,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Tutorials and Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../FAQ/index.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../developerGuide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../socis.html">SOCIS 2019</a></li>
 </ul>
 
             
@@ -158,7 +161,7 @@
            <div itemprop="articleBody">
             
   <ul class="simple">
-<li><span class="jsontype">string</span> <span class="jsonkey">type</span> (mandatory). Possible values: <code class="docutils literal"><span class="pre">&quot;cartesian&quot;</span></code>, <code class="docutils literal"><span class="pre">&quot;keplerian&quot;</span></code>, <code class="docutils literal"><span class="pre">&quot;spherical&quot;</span></code>.</li>
+<li><span class="jsontype">string</span> <span class="jsonkey">type</span> (mandatory). Possible values: <code class="docutils literal notranslate"><span class="pre">&quot;cartesian&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;keplerian&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;spherical&quot;</span></code>.</li>
 </ul>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -179,15 +182,15 @@
 <li><span class="jsontype">number</span> <span class="jsonkey">centralBodyGravitationalParameter</span> (optional). If not specified, will be retrieved from the corresponding central body specified in the propagator.</li>
 <li><span class="jsontype">number</span> <span class="jsonkey">centralBodyAverageRadius</span> (optional). If not specified, will be retrieved from the corresponding central body specified in the propagator.</li>
 <li><span class="jsontype">number</span> <span class="jsonkey">semiMajorAxis</span> (mandatory/optional).</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">eccentricity</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">inclination</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">argumentOfPeriapsis</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">longitudeOfAscendingNode</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">trueAnomaly</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">meanAnomaly</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">eccentricAnomaly</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">semiLatusRectum</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">meanMotion</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">eccentricity</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">inclination</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">argumentOfPeriapsis</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">longitudeOfAscendingNode</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">trueAnomaly</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">meanAnomaly</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">eccentricAnomaly</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">semiLatusRectum</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">meanMotion</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
 <li><span class="jsontype">number</span> <span class="jsonkey">period</span> (mandatory/optional).</li>
 <li><span class="jsontype">number</span> <span class="jsonkey">radius</span> (mandatory/optional).</li>
 <li><span class="jsontype">number</span> <span class="jsonkey">altitude</span> (mandatory/optional).</li>
@@ -205,11 +208,11 @@
 <li><span class="jsontype">number</span> <span class="jsonkey">epoch</span> (optional). If not specified, will be retrieved from the initial epoch of the integrator.</li>
 <li><span class="jsontype">number</span> <span class="jsonkey">radius</span> (mandatory if <span class="jsonkey">altitude</span> undefined).</li>
 <li><span class="jsontype">number</span> <span class="jsonkey">altitude</span> (mandatory if <span class="jsonkey">radius</span> undefined).</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">latitude</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">longitude</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">latitude</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">longitude</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
 <li><span class="jsontype">number</span> <span class="jsonkey">speed</span> (mandatory).</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">flightPathAngle</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
-<li><span class="jsontype">number</span> <span class="jsonkey">headingAngle</span> (optional). Default value: <code class="docutils literal"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">flightPathAngle</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<li><span class="jsontype">number</span> <span class="jsonkey">headingAngle</span> (optional). Default value: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
 </ul>
 </div>
 
@@ -259,7 +262,8 @@
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
 
@@ -94,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Tutorials and Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ/index.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../developerGuide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../socis.html">SOCIS 2019</a></li>
 </ul>
 
             
@@ -184,12 +187,12 @@
 <blockquote>
 <div><ul class="simple">
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="utility.html#shared_ptr" title="shared_ptr"><code class="xref py py-class docutils literal"><span class="pre">shared_ptr</span></code></a></dt>
-<dd>This is a part of the boost smart pointer library. It is a template class that stores a smart pointer to a dynamically allocated object. The smart pointer behaves much like a normal built-in C++ pointer, except that the object pointed to is guaranteed to be <strong>automatically deleted</strong> when the last <a class="reference internal" href="utility.html#shared_ptr" title="shared_ptr"><code class="xref py py-class docutils literal"><span class="pre">shared_ptr</span></code></a> pointing to the object is destroyed or reset. This boost feature is used in Tudat because it is a safe way to use pointers to dynamically allocated objects. In Tudat it is frequently combined with <a class="reference internal" href="utility.html#make_shared" title="make_shared"><code class="xref py py-class docutils literal"><span class="pre">make_shared</span></code></a>.</dd>
+<dt><a class="reference internal" href="utility.html#shared_ptr" title="shared_ptr"><code class="xref py py-class docutils literal notranslate"><span class="pre">shared_ptr</span></code></a></dt>
+<dd>This is a part of the boost smart pointer library. It is a template class that stores a smart pointer to a dynamically allocated object. The smart pointer behaves much like a normal built-in C++ pointer, except that the object pointed to is guaranteed to be <strong>automatically deleted</strong> when the last <a class="reference internal" href="utility.html#shared_ptr" title="shared_ptr"><code class="xref py py-class docutils literal notranslate"><span class="pre">shared_ptr</span></code></a> pointing to the object is destroyed or reset. This boost feature is used in Tudat because it is a safe way to use pointers to dynamically allocated objects. In Tudat it is frequently combined with <a class="reference internal" href="utility.html#make_shared" title="make_shared"><code class="xref py py-class docutils literal notranslate"><span class="pre">make_shared</span></code></a>.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="utility.html#make_shared" title="make_shared"><code class="xref py py-class docutils literal"><span class="pre">make_shared</span></code></a></dt>
+<dt><a class="reference internal" href="utility.html#make_shared" title="make_shared"><code class="xref py py-class docutils literal notranslate"><span class="pre">make_shared</span></code></a></dt>
 <dd>This is a part of the boost smart pointer library. It is a factory function that creates an object of a given type and <strong>returns a shared pointer</strong> to it. This way the explicit use of new is avoided. This boost feature is frequently used in Tudat because it is an easy, efficient and safe way to use pointers to dynamically allocated objects.</dd>
 </dl>
 </li>
@@ -199,12 +202,12 @@
 <blockquote>
 <div><ul class="simple">
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="utility.html#function" title="function"><code class="xref py py-class docutils literal"><span class="pre">function</span></code></a></dt>
-<dd>The boost function library contains a family of class templates that are function object wrappers. This boost feature is used in Tudat because it is an easy way to pass a function as an input to another object or function. It is used instead of a normal C++ function pointer. The boost function type describes what the function should ‘look’ like, in the sense that it defines both its input types (and order) and its output type. Any function that fits this profile is accepted when it is passed. In Tudat it is frequently combined with <a class="reference internal" href="utility.html#bind" title="bind"><code class="xref py py-class docutils literal"><span class="pre">bind</span></code></a> to create a link to a class member function.</dd>
+<dt><a class="reference internal" href="utility.html#function" title="function"><code class="xref py py-class docutils literal notranslate"><span class="pre">function</span></code></a></dt>
+<dd>The boost function library contains a family of class templates that are function object wrappers. This boost feature is used in Tudat because it is an easy way to pass a function as an input to another object or function. It is used instead of a normal C++ function pointer. The boost function type describes what the function should ‘look’ like, in the sense that it defines both its input types (and order) and its output type. Any function that fits this profile is accepted when it is passed. In Tudat it is frequently combined with <a class="reference internal" href="utility.html#bind" title="bind"><code class="xref py py-class docutils literal notranslate"><span class="pre">bind</span></code></a> to create a link to a class member function.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="utility.html#bind" title="bind"><code class="xref py py-class docutils literal"><span class="pre">bind</span></code></a></dt>
+<dt><a class="reference internal" href="utility.html#bind" title="bind"><code class="xref py py-class docutils literal notranslate"><span class="pre">bind</span></code></a></dt>
 <dd>The boost bind library is a template library that implements a simple and versatile function argument binding mechanism. Typically, it is used to create boost function objects from either a free function or a member function. It supports arbitrary function objects, functions, function pointers, and member function pointers. It can bind any argument to a specific value or route input arguments into arbitrary positions. This boost feature is used in Tudat because it is a versatile method, and it is a good way to pass function objects.</dd>
 </dl>
 </li>
@@ -213,7 +216,7 @@
 </div>
 <div class="section" id="boost-shared-libraries-dynamic-linking">
 <h2>Boost Shared Libraries (Dynamic Linking)<a class="headerlink" href="#boost-shared-libraries-dynamic-linking" title="Permalink to this headline">¶</a></h2>
-<p>During the build process of any application, multiple object files can be linked in a library. This library can be linked either statically or dynamically. Usually, we make use of the static boost libraries. These files have the extension <code class="docutils literal"><span class="pre">.a</span></code> and can be found in the <code class="docutils literal"><span class="pre">boost/stage/lib</span> <span class="pre">directory</span></code>. However, it could be that you require the dynamically linked libraries (for instance, if you are making use of&nbsp;PaGMO). These files have the extension <code class="docutils literal"><span class="pre">.dll</span></code> and can be found in the <code class="docutils literal"><span class="pre">boost/shared</span></code> directory.</p>
+<p>During the build process of any application, multiple object files can be linked in a library. This library can be linked either statically or dynamically. Usually, we make use of the static boost libraries. These files have the extension <code class="docutils literal notranslate"><span class="pre">.a</span></code> and can be found in the <code class="docutils literal notranslate"><span class="pre">boost/stage/lib</span> <span class="pre">directory</span></code>. However, it could be that you require the dynamically linked libraries (for instance, if you are making use of&nbsp;PaGMO). These files have the extension <code class="docutils literal notranslate"><span class="pre">.dll</span></code> and can be found in the <code class="docutils literal notranslate"><span class="pre">boost/shared</span></code> directory.</p>
 </div>
 </div>
 
@@ -263,7 +266,8 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

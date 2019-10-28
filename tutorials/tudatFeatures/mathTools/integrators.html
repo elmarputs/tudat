@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
 
@@ -121,6 +123,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ/index.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../developerGuide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../socis.html">SOCIS 2019</a></li>
 </ul>
 
             
@@ -207,23 +210,23 @@
 <h2>6.2.1. Setting up a Numerical Integrator<a class="headerlink" href="#setting-up-a-numerical-integrator" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="creating-an-integrator-object">
 <h3>6.2.1.1. Creating an Integrator Object<a class="headerlink" href="#creating-an-integrator-object" title="Permalink to this headline">¶</a></h3>
-<p>All numerical integrators presented in this page follow the same framework, where the first step is to create the <code class="docutils literal"><span class="pre">integrator</span></code> object, which has the <code class="docutils literal"><span class="pre">NumericalIntegratorXdPointer</span></code> type:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">NumericalIntegratorXdPointer</span> <span class="n">integrator</span>
+<p>All numerical integrators presented in this page follow the same framework, where the first step is to create the <code class="docutils literal notranslate"><span class="pre">integrator</span></code> object, which has the <code class="docutils literal notranslate"><span class="pre">NumericalIntegratorXdPointer</span></code> type:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">NumericalIntegratorXdPointer</span> <span class="n">integrator</span>
                 <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span> <span class="n">EulerIntegratorXd</span> <span class="o">&gt;</span><span class="p">(</span>
                     <span class="n">stateDerivativeFunction</span><span class="p">,</span>
                     <span class="n">intervalStart</span><span class="p">,</span>
                     <span class="n">initialState</span> <span class="p">);</span>
 </pre></div>
 </div>
-<p>Although in this case <code class="docutils literal"><span class="pre">NumericalIntegratorXdPointer</span></code> is a <em>typedef</em> for a <code class="docutils literal"><span class="pre">std::shared_ptr</span></code>, the constructor can be created explicitly. To initialize an Euler integrator, the following arguments need to be specified:</p>
+<p>Although in this case <code class="docutils literal notranslate"><span class="pre">NumericalIntegratorXdPointer</span></code> is a <em>typedef</em> for a <code class="docutils literal notranslate"><span class="pre">std::shared_ptr</span></code>, the constructor can be created explicitly. To initialize an Euler integrator, the following arguments need to be specified:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">EulerIntegratorXd</span></code> is the input argument for <code class="docutils literal"><span class="pre">std::make_shared</span></code>, which defines the derived integrator class that we want to use.</li>
-<li><code class="docutils literal"><span class="pre">stateDerivativeFunction</span></code> passes the state derivative function that defines the differential equation to be integrated. See below for more details.</li>
-<li><code class="docutils literal"><span class="pre">intervalStart</span></code> provides the start of the integration interval and must have the type of the independent variable.</li>
-<li><code class="docutils literal"><span class="pre">initialState</span></code> provides the initial state and must have the type of the dependent variable.</li>
+<li><code class="docutils literal notranslate"><span class="pre">EulerIntegratorXd</span></code> is the input argument for <code class="docutils literal notranslate"><span class="pre">std::make_shared</span></code>, which defines the derived integrator class that we want to use.</li>
+<li><code class="docutils literal notranslate"><span class="pre">stateDerivativeFunction</span></code> passes the state derivative function that defines the differential equation to be integrated. See below for more details.</li>
+<li><code class="docutils literal notranslate"><span class="pre">intervalStart</span></code> provides the start of the integration interval and must have the type of the independent variable.</li>
+<li><code class="docutils literal notranslate"><span class="pre">initialState</span></code> provides the initial state and must have the type of the dependent variable.</li>
 </ul>
 <p>It is important to emphasize that the provided state derivative function must have a particular structure for the numerical integration to work. A sample state derivative function is defined here:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span> <span class="n">stateDerivativeFunction</span><span class="p">(</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">time</span><span class="p">,</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span> <span class="n">stateDerivativeFunction</span><span class="p">(</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">time</span><span class="p">,</span>
                                                        <span class="k">const</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span><span class="o">&amp;</span> <span class="n">state</span> <span class="p">)</span>
 <span class="p">{</span>
     <span class="p">...</span>
@@ -232,52 +235,52 @@
 </div>
 <p>Any user-defined state derivative function must satisfy the following requirements:</p>
 <ul class="simple">
-<li>The first input argument provides the independent variable, which must be a <code class="docutils literal"><span class="pre">const</span> <span class="pre">double</span></code> and in this case is named <code class="docutils literal"><span class="pre">time</span></code>.</li>
-<li>The second input argument provides the dependent variable, which type is <strong>free</strong> to be defined. In this case, the type to be integrated is a <code class="docutils literal"><span class="pre">Eigen::VectorXd</span></code> which is passed by reference.</li>
+<li>The first input argument provides the independent variable, which must be a <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">double</span></code> and in this case is named <code class="docutils literal notranslate"><span class="pre">time</span></code>.</li>
+<li>The second input argument provides the dependent variable, which type is <strong>free</strong> to be defined. In this case, the type to be integrated is a <code class="docutils literal notranslate"><span class="pre">Eigen::VectorXd</span></code> which is passed by reference.</li>
 <li>The output argument type must coincide with the dependent variable type.</li>
 </ul>
 <p>The contents of the state derivative function can be freely defined according to the user’s needs, but it is important to respect the function’s input-output structure.</p>
 </div>
 <div class="section" id="using-the-integrator-object">
 <h3>6.2.1.2. Using the Integrator Object<a class="headerlink" href="#using-the-integrator-object" title="Permalink to this headline">¶</a></h3>
-<p>Once the <code class="docutils literal"><span class="pre">integrator</span></code> object has been created, the multiple functions available within the <code class="xref py py-class docutils literal"><span class="pre">NumericalIntegrator</span></code> class can be accessed. The following functions are available and they are exemplified using the <code class="docutils literal"><span class="pre">integrator</span></code> and the <code class="docutils literal"><span class="pre">stateDerivativeFunction</span></code> declared above:</p>
+<p>Once the <code class="docutils literal notranslate"><span class="pre">integrator</span></code> object has been created, the multiple functions available within the <code class="xref py py-class docutils literal notranslate"><span class="pre">NumericalIntegrator</span></code> class can be accessed. The following functions are available and they are exemplified using the <code class="docutils literal notranslate"><span class="pre">integrator</span></code> and the <code class="docutils literal notranslate"><span class="pre">stateDerivativeFunction</span></code> declared above:</p>
 <ul>
-<li><p class="first"><code class="docutils literal"><span class="pre">getNextStepSize(</span> <span class="pre">)</span></code></p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">getNextStepSize(</span> <span class="pre">)</span></code></p>
 <blockquote>
 <div><p>Returns the step-size at the next integration step. The return type is defined by the type of the independent variable:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">nextStepSize</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">getNextStepSize</span><span class="p">(</span> <span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">nextStepSize</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">getNextStepSize</span><span class="p">(</span> <span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">getCurrentState(</span> <span class="pre">)</span></code></p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">getCurrentState(</span> <span class="pre">)</span></code></p>
 <blockquote>
 <div><p>Returns the state at the current integration step. The return type is defined by the type of the dependent variable.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span> <span class="n">currentState</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">getCurrentState</span><span class="p">(</span> <span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span> <span class="n">currentState</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">getCurrentState</span><span class="p">(</span> <span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">getCurrentIndependentVariable(</span> <span class="pre">)</span></code></p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">getCurrentIndependentVariable(</span> <span class="pre">)</span></code></p>
 <blockquote>
 <div><p>Returns the value of the independent variable at the current integration step. The return type is defined by the type of the dependent variable.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">currentIndependentVariable</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">getCurrentIndependentVariable</span><span class="p">(</span> <span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">currentIndependentVariable</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">getCurrentIndependentVariable</span><span class="p">(</span> <span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">performIntegrationStep(</span> <span class="pre">stepSize</span> <span class="pre">)</span></code></p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">performIntegrationStep(</span> <span class="pre">stepSize</span> <span class="pre">)</span></code></p>
 <blockquote>
 <div><p>Perform an integration step with the step-size fed to the first argument and return the integration result.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span> <span class="n">stateAfterIntegrationStep</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">performIntegrationStep</span><span class="p">(</span> <span class="n">nextStepSize</span> <span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span> <span class="n">stateAfterIntegrationStep</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">performIntegrationStep</span><span class="p">(</span> <span class="n">nextStepSize</span> <span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">integrateTo(</span> <span class="pre">intervalEnd</span> <span class="pre">,</span> <span class="pre">initialTimeStep</span> <span class="pre">)</span></code></p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">integrateTo(</span> <span class="pre">intervalEnd</span> <span class="pre">,</span> <span class="pre">initialTimeStep</span> <span class="pre">)</span></code></p>
 <blockquote>
-<div><p>Performs an integration until the specified <code class="docutils literal"><span class="pre">intervalEnd</span></code>, given the provided <code class="docutils literal"><span class="pre">initialTimeStep</span></code>. This function returns the state at the end of the interval.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span> <span class="n">stateAtIntervalEnd</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">integrateTo</span><span class="p">(</span> <span class="n">intervalEnd</span> <span class="p">,</span> <span class="n">initialTimeStep</span> <span class="p">);</span>
+<div><p>Performs an integration until the specified <code class="docutils literal notranslate"><span class="pre">intervalEnd</span></code>, given the provided <code class="docutils literal notranslate"><span class="pre">initialTimeStep</span></code>. This function returns the state at the end of the interval.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span> <span class="n">stateAtIntervalEnd</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">-&gt;</span><span class="n">integrateTo</span><span class="p">(</span> <span class="n">intervalEnd</span> <span class="p">,</span> <span class="n">initialTimeStep</span> <span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -298,7 +301,7 @@
 <div class="section" id="euler-integrator">
 <h3>6.2.2.1. Euler Integrator<a class="headerlink" href="#euler-integrator" title="Permalink to this headline">¶</a></h3>
 <p>The Euler integrator is the simplest integrator available but is also a first-order method, meaning that the global error is proportional to the step-size. Thus, its use for high-accuracy applications is not encouraged. Creating the Euler integrator object is done as follows:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">NumericalIntegratorXdPointer</span> <span class="n">integrator</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">NumericalIntegratorXdPointer</span> <span class="n">integrator</span>
                 <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span> <span class="n">EulerIntegratorXd</span> <span class="o">&gt;</span><span class="p">(</span>
                     <span class="n">stateDerivativeFunction</span><span class="p">,</span>
                     <span class="n">intervalStart</span><span class="p">,</span>
@@ -309,7 +312,7 @@
 <div class="section" id="runge-kutta-4-integrator">
 <h3>6.2.2.2. Runge-Kutta 4 Integrator<a class="headerlink" href="#runge-kutta-4-integrator" title="Permalink to this headline">¶</a></h3>
 <p>The Runge-Kutta 4 (RK4) integrator is a fourth-order fixed step-size integrator, thus performing better than the Euler integrator. The RK4 integrator is created as follows:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">NumericalIntegratorXdPointer</span> <span class="n">integrator</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">NumericalIntegratorXdPointer</span> <span class="n">integrator</span>
                 <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span> <span class="n">RungeKutta4IntegratorXd</span> <span class="o">&gt;</span><span class="p">(</span>
                     <span class="n">stateDerivativeFunction</span><span class="p">,</span>
                     <span class="n">intervalStart</span><span class="p">,</span>
@@ -320,7 +323,7 @@
 <div class="section" id="runge-kutta-variable-step-size-integrator">
 <h3>6.2.2.3. Runge-Kutta Variable Step-size Integrator<a class="headerlink" href="#runge-kutta-variable-step-size-integrator" title="Permalink to this headline">¶</a></h3>
 <p>The Runge-Kutta variable step-size integrator involves a number of methods where the step-size is adjusted throughout the integration interval to bound the numerical error. Creating such integrators differs from the Euler integrator and the Runge-Kutta 4 fixed step-size methods:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">RungeKuttaVariableStepSizeIntegratorXd</span> <span class="n">integrator</span><span class="p">(</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">RungeKuttaVariableStepSizeIntegratorXd</span> <span class="n">integrator</span><span class="p">(</span>
             <span class="n">rungeKuttaCoefficients</span><span class="p">,</span>
             <span class="n">stateDerivativeFunction</span><span class="p">,</span>
             <span class="n">initialTime</span><span class="p">,</span>
@@ -333,11 +336,11 @@
 </div>
 <p>where the following arguments are necessary:</p>
 <ul>
-<li><p class="first"><code class="docutils literal"><span class="pre">RungeKuttaVariableStepSizeIntegratorXd</span></code> is the input argument for <code class="docutils literal"><span class="pre">std::make_shared</span></code>, which defines the derived integrator class that we want to use.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">RungeKuttaVariableStepSizeIntegratorXd</span></code> is the input argument for <code class="docutils literal notranslate"><span class="pre">std::make_shared</span></code>, which defines the derived integrator class that we want to use.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">rungeKuttaCoefficients</span></code> provides the set of coefficients that define the particular variable step-size method being used. A number of Runge-Kutta coefficient sets are available in Tudat:</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">rungeKuttaCoefficients</span></code> provides the set of coefficients that define the particular variable step-size method being used. A number of Runge-Kutta coefficient sets are available in Tudat:</p>
 <blockquote>
-<div><div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="c1">// Runge-Kutta-Fehlberg 4(5)</span>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Runge-Kutta-Fehlberg 4(5)</span>
 <span class="n">RungeKuttaCoefficients</span> <span class="n">rungeKuttaCoefficients</span> <span class="o">=</span>
         <span class="n">RungeKuttaCoefficients</span><span class="o">::</span><span class="n">get</span><span class="p">(</span> <span class="n">RungeKuttaCoefficients</span><span class="o">::</span><span class="n">rungeKuttaFehlberg45</span> <span class="p">);</span>
 
@@ -356,19 +359,19 @@
 </div>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">stateDerivativeFunction</span></code> passes the state derivative function that defines the differential equation to be integrated.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">stateDerivativeFunction</span></code> passes the state derivative function that defines the differential equation to be integrated.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">initialTime</span></code> provides the initial value of the independent variable.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">initialTime</span></code> provides the initial value of the independent variable.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">initialState</span></code> provides the initial state and must have the type of the dependent variable.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">initialState</span></code> provides the initial state and must have the type of the dependent variable.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">minimumStepSize</span></code> defines the minimum step-size that the variable step-size integrator can take.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">minimumStepSize</span></code> defines the minimum step-size that the variable step-size integrator can take.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">maximumStepSize</span></code> defines the maximum step-size that the variable step-size integrator can take.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">maximumStepSize</span></code> defines the maximum step-size that the variable step-size integrator can take.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">relativeErrorTolerance</span></code> defines the relative error tolerance.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">relativeErrorTolerance</span></code> defines the relative error tolerance.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">absoluteErrorTolerance</span></code> defines the absolute error tolerance.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">absoluteErrorTolerance</span></code> defines the absolute error tolerance.</p>
 </li>
 </ul>
 </div>
@@ -434,7 +437,8 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

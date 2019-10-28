@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
 
@@ -122,6 +124,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ/index.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../developerGuide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../socis.html">SOCIS 2019</a></li>
 </ul>
 
             
@@ -196,7 +199,7 @@
 <div class="section" id="why-use-eigen">
 <h2>1.1. Why Use Eigen?<a class="headerlink" href="#why-use-eigen" title="Permalink to this headline">¶</a></h2>
 <p>Eigen is free software that can handle many different linear algebra operations and also has a geometry framework. Furthermore, the code is mature, well maintained, well tested, and has good documentation.</p>
-<p>Vector storage containers from the Eigen library should only be used when linear algebra operations are required on it; for other purposes (e.g. storing data) the&nbsp;vector storage container&nbsp;<code class="docutils literal"><span class="pre">std</span></code> of the standard C++ library should be used.</p>
+<p>Vector storage containers from the Eigen library should only be used when linear algebra operations are required on it; for other purposes (e.g. storing data) the&nbsp;vector storage container&nbsp;<code class="docutils literal notranslate"><span class="pre">std</span></code> of the standard C++ library should be used.</p>
 </div>
 <div class="section" id="common-eigen-types">
 <h2>1.2. Common Eigen Types<a class="headerlink" href="#common-eigen-types" title="Permalink to this headline">¶</a></h2>
@@ -267,13 +270,13 @@ In general, you should consider the following guidelines:</p>
 <h2>1.5. Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>When declaring an arbitrary vector of type&nbsp;<code class="docutils literal"><span class="pre">VectorXd</span></code>&nbsp;in your code, you should always allocate the size.</li>
-<li>Eigen <code class="docutils literal"><span class="pre">VectorXd</span></code> objects allow for dynamic allocation of size. Not allocating the size though and operating on a <code class="docutils literal"><span class="pre">VectorXd</span></code> object can result in very cryptic errors.</li>
-<li>Access the coefficients of a matrix using&nbsp;<code class="docutils literal"><span class="pre">matrix(</span> <span class="pre">i,</span> <span class="pre">j</span> <span class="pre">)</span></code>. Notice that it is required to use round brackets to access the coefficients of a matrix.</li>
+<li>When declaring an arbitrary vector of type&nbsp;<code class="docutils literal notranslate"><span class="pre">VectorXd</span></code>&nbsp;in your code, you should always allocate the size.</li>
+<li>Eigen <code class="docutils literal notranslate"><span class="pre">VectorXd</span></code> objects allow for dynamic allocation of size. Not allocating the size though and operating on a <code class="docutils literal notranslate"><span class="pre">VectorXd</span></code> object can result in very cryptic errors.</li>
+<li>Access the coefficients of a matrix using&nbsp;<code class="docutils literal notranslate"><span class="pre">matrix(</span> <span class="pre">i,</span> <span class="pre">j</span> <span class="pre">)</span></code>. Notice that it is required to use round brackets to access the coefficients of a matrix.</li>
 <li>The index of the first element in an Eigen matrix or vector is 0, as opposed to the convention in mathematics that the first index is 1.</li>
-<li>Eigen supports Matrices and Array objects. There is a difference between the two: the matrix class is used for linear algebraic operations such as matrix multiplication; the array class is used for coefficient-wise operations. In case you need to use both operations on one object, Eigen does have a solution for this: the matrix class has an&nbsp;<code class="docutils literal"><span class="pre">.array(</span> <span class="pre">)</span></code>&nbsp;method; and the array class has an&nbsp;<code class="docutils literal"><span class="pre">.matrix(</span> <span class="pre">)</span></code>&nbsp;method, which allows a member of one class to be treated as a member of the other class.</li>
-<li>You can initialize all coefficients of a vector, matrix or array to zero by using the method&nbsp;<code class="docutils literal"><span class="pre">Zero(</span> <span class="pre">)</span></code>. For example:&nbsp;<code class="docutils literal"><span class="pre">Eigen::Vector3d::Zero()</span></code>&nbsp;creates a 3 element vector of doubles and initializes all elements to zero. Note that initialization using this method should happen immediately when an Eigen object is declared.</li>
-<li>You can create a vector of linearly spaced elements using the method&nbsp;<code class="docutils literal"><span class="pre">LinSpaced(</span> <span class="pre">size,</span> <span class="pre">low,</span> <span class="pre">high</span> <span class="pre">)</span></code>.</li>
+<li>Eigen supports Matrices and Array objects. There is a difference between the two: the matrix class is used for linear algebraic operations such as matrix multiplication; the array class is used for coefficient-wise operations. In case you need to use both operations on one object, Eigen does have a solution for this: the matrix class has an&nbsp;<code class="docutils literal notranslate"><span class="pre">.array(</span> <span class="pre">)</span></code>&nbsp;method; and the array class has an&nbsp;<code class="docutils literal notranslate"><span class="pre">.matrix(</span> <span class="pre">)</span></code>&nbsp;method, which allows a member of one class to be treated as a member of the other class.</li>
+<li>You can initialize all coefficients of a vector, matrix or array to zero by using the method&nbsp;<code class="docutils literal notranslate"><span class="pre">Zero(</span> <span class="pre">)</span></code>. For example:&nbsp;<code class="docutils literal notranslate"><span class="pre">Eigen::Vector3d::Zero()</span></code>&nbsp;creates a 3 element vector of doubles and initializes all elements to zero. Note that initialization using this method should happen immediately when an Eigen object is declared.</li>
+<li>You can create a vector of linearly spaced elements using the method&nbsp;<code class="docutils literal notranslate"><span class="pre">LinSpaced(</span> <span class="pre">size,</span> <span class="pre">low,</span> <span class="pre">high</span> <span class="pre">)</span></code>.</li>
 </ul>
 </div></blockquote>
 </div>
@@ -334,7 +337,8 @@ In general, you should consider the following guidelines:</p>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

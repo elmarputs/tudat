@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
 
@@ -115,6 +117,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../FAQ/index.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../developerGuide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../socis.html">SOCIS 2019</a></li>
 </ul>
 
             
@@ -189,7 +192,7 @@
 <h2>4.1. Incorrect comma placement<a class="headerlink" href="#incorrect-comma-placement" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>Comma placement in .json file is very exacting. The following code, for instance, is incorrect:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;bodies&quot;</span><span class="p">:</span> <span class="p">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;bodies&quot;</span><span class="p">:</span> <span class="p">{</span>
 <span class="s2">&quot;Sun&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;useDefaultSettings&quot;</span><span class="p">:</span> <span class="n">true</span>
 <span class="p">},</span>
@@ -203,20 +206,20 @@
 </pre></div>
 </div>
 <p>This will give the following error:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Parse</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">file</span> <span class="s2">&quot;/jsonFileDirectory/jsonFileName.json&quot;</span> <span class="n">at</span> <span class="n">line</span> <span class="mi">19</span><span class="p">,</span> <span class="n">col</span> <span class="mf">17.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Parse</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">file</span> <span class="s2">&quot;/jsonFileDirectory/jsonFileName.json&quot;</span> <span class="n">at</span> <span class="n">line</span> <span class="mi">19</span><span class="p">,</span> <span class="n">col</span> <span class="mf">17.</span>
 <span class="n">terminate</span> <span class="n">called</span> <span class="n">after</span> <span class="n">throwing</span> <span class="n">an</span> <span class="n">instance</span> <span class="n">of</span> <span class="s1">&#39;nlohmann::detail::parse_error&#39;</span>
 <span class="n">what</span><span class="p">():</span>  <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">parse_error</span><span class="o">.</span><span class="mi">101</span><span class="p">]</span> <span class="n">parse</span> <span class="n">error</span> <span class="n">at</span> <span class="mi">426</span><span class="p">:</span> <span class="n">syntax</span> <span class="n">error</span> <span class="o">-</span> <span class="n">unexpected</span> <span class="n">string</span> <span class="n">literal</span><span class="p">;</span> <span class="n">expected</span> <span class="s1">&#39;}&#39;</span>
 </pre></div>
 </div>
-<p>Where the final line <code class="docutils literal"><span class="pre">&quot;asterix&quot;:</span> <span class="pre">{</span></code> correspond to line 19 of the input file.</p>
-<p>The error occurs because, when defining the list of <code class="docutils literal"><span class="pre">bodies</span></code>, each entry should be followed by a comma. Here, the comma after the <code class="docutils literal"><span class="pre">&quot;Moon&quot;</span></code> entry is missing, and should read:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;Moon&quot;</span><span class="p">:</span> <span class="p">{</span>
+<p>Where the final line <code class="docutils literal notranslate"><span class="pre">&quot;asterix&quot;:</span> <span class="pre">{</span></code> correspond to line 19 of the input file.</p>
+<p>The error occurs because, when defining the list of <code class="docutils literal notranslate"><span class="pre">bodies</span></code>, each entry should be followed by a comma. Here, the comma after the <code class="docutils literal notranslate"><span class="pre">&quot;Moon&quot;</span></code> entry is missing, and should read:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Moon&quot;</span><span class="p">:</span> <span class="p">{</span>
    <span class="s2">&quot;useDefaultSettings&quot;</span><span class="p">:</span> <span class="n">true</span>
 <span class="p">},</span>
 </pre></div>
 </div>
 <p>So, a comma needed to be added to fix the error. In the case where a comma too <em>many</em> was added, for instance:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;bodies&quot;</span><span class="p">:</span> <span class="p">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;bodies&quot;</span><span class="p">:</span> <span class="p">{</span>
 <span class="s2">&quot;Sun&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;useDefaultSettings&quot;</span><span class="p">:</span> <span class="n">true</span>
 <span class="p">},</span>
@@ -229,8 +232,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>A similar error will be given. The problem here is that, following the last body (here <code class="docutils literal"><span class="pre">&quot;Moon&quot;</span></code>), no comma should be given, and the entry should read:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;Moon&quot;</span><span class="p">:</span> <span class="p">{</span>
+<p>A similar error will be given. The problem here is that, following the last body (here <code class="docutils literal notranslate"><span class="pre">&quot;Moon&quot;</span></code>), no comma should be given, and the entry should read:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Moon&quot;</span><span class="p">:</span> <span class="p">{</span>
    <span class="s2">&quot;useDefaultSettings&quot;</span><span class="p">:</span> <span class="n">true</span>
 <span class="p">},</span>
 </pre></div>
@@ -294,7 +297,8 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

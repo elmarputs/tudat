@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
 
@@ -120,6 +122,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ/index.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../developerGuide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../socis.html">SOCIS 2019</a></li>
 </ul>
 
             
@@ -213,7 +216,7 @@
 <div><ul>
 <li><p class="first"><strong>Multi-dimensional Arrays</strong></p>
 <blockquote>
-<div><p>In C++, vectors and matrices are usually defined by using the <code class="docutils literal"><span class="pre">Eigen</span></code> library (see <a class="reference internal" href="eigen.html#externaleigen"><span class="std std-ref">Eigen: Basic Concepts</span></a> for an introduction). Despite their usefulness, however, these linear algebra tools are only defined for up to 2-dimensional matrices. In case you wanted to store data with more dimensions, then it is common practice in Tudat to use <code class="docutils literal"><span class="pre">boost::multi_array</span></code>. You can find examples of the use of this objects, whenever files are read or written, and for the storage of aerodynamic coefficients, tabulated atmospheres, etc.</p>
+<div><p>In C++, vectors and matrices are usually defined by using the <code class="docutils literal notranslate"><span class="pre">Eigen</span></code> library (see <a class="reference internal" href="eigen.html#externaleigen"><span class="std std-ref">Eigen: Basic Concepts</span></a> for an introduction). Despite their usefulness, however, these linear algebra tools are only defined for up to 2-dimensional matrices. In case you wanted to store data with more dimensions, then it is common practice in Tudat to use <code class="docutils literal notranslate"><span class="pre">boost::multi_array</span></code>. You can find examples of the use of this objects, whenever files are read or written, and for the storage of aerodynamic coefficients, tabulated atmospheres, etc.</p>
 </div></blockquote>
 </li>
 <li><p class="first"><strong>Random Number Generators</strong></p>
@@ -248,7 +251,7 @@
 </div>
 <div class="section" id="boost-shared-libraries-dynamic-linking">
 <h2>7.3. Boost Shared Libraries (Dynamic Linking)<a class="headerlink" href="#boost-shared-libraries-dynamic-linking" title="Permalink to this headline">¶</a></h2>
-<p>During the build process of any application, multiple object files can be linked in a library. This library can be linked either statically or dynamically. Usually, we make use of the static Boost libraries. These files have the extension <code class="docutils literal"><span class="pre">.a</span></code> and can be found in the <code class="docutils literal"><span class="pre">boost/stage/lib</span> <span class="pre">directory</span></code>. However, it could be that you require the dynamically linked libraries (for instance, if you are making use of&nbsp;PaGMO). These files have the extension <code class="docutils literal"><span class="pre">.dll</span></code> and can be found in the <code class="docutils literal"><span class="pre">boost/shared</span></code> directory.</p>
+<p>During the build process of any application, multiple object files can be linked in a library. This library can be linked either statically or dynamically. Usually, we make use of the static Boost libraries. These files have the extension <code class="docutils literal notranslate"><span class="pre">.a</span></code> and can be found in the <code class="docutils literal notranslate"><span class="pre">boost/stage/lib</span> <span class="pre">directory</span></code>. However, it could be that you require the dynamically linked libraries (for instance, if you are making use of&nbsp;PaGMO). These files have the extension <code class="docutils literal notranslate"><span class="pre">.dll</span></code> and can be found in the <code class="docutils literal notranslate"><span class="pre">boost/shared</span></code> directory.</p>
 </div>
 </div>
 
@@ -307,7 +310,8 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

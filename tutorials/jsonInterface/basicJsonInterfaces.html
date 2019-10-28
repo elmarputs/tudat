@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
 
@@ -119,6 +121,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../FAQ/index.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../developerGuide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../socis.html">SOCIS 2019</a></li>
 </ul>
 
             
@@ -193,7 +196,7 @@
 <h2>1.1. What Is JSON<a class="headerlink" href="#what-is-json" title="Permalink to this headline">¶</a></h2>
 <p>The term JSON stands for JavaScript Object Notation, and is a file format which, according to its Wikipedia page, uses human-readable text to transmit data objects consisting of attribute-value pairs and array data types. This is in fact, where one of JSON’s main advantages can be found, which is explained in the next section.</p>
 <p>Writing a JSON file is a very simple process. The text you write will firstly have to be included in a series of curly brackets. These brackets usually enclose an object, which can include some member elements, which further describe the object. Some of these elements can be objects themselves. For instance, to describe a person, the Wikipedia page provides the following neat example:</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;firstName&quot;</span><span class="p">:</span> <span class="s2">&quot;Dylan&quot;</span><span class="p">,</span>
    <span class="nt">&quot;lastName&quot;</span><span class="p">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
    <span class="nt">&quot;isAlive&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -226,15 +229,15 @@
 <li><p class="first">The object “person” is descibed by a series of characteristics (such as <span class="jsonkey">firstName</span>, <span class="jsonkey">isAlive</span>, <span class="jsonkey">phoneNumbers</span>, etc.) which are called <em>keys</em>. To each key corresponds a <em>value</em>, which can be of the following types:</p>
 <blockquote>
 <div><ul>
-<li><p class="first"><strong>String</strong>: text sorrounded by two quotation marks <code class="docutils literal"><span class="pre">&quot;...&quot;</span></code> (as in <span class="jsonkey">firstName</span>)</p>
+<li><p class="first"><strong>String</strong>: text sorrounded by two quotation marks <code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code> (as in <span class="jsonkey">firstName</span>)</p>
 </li>
-<li><p class="first"><strong>Boolean</strong>: either <code class="docutils literal"><span class="pre">true</span></code> or <code class="docutils literal"><span class="pre">false</span></code> (as in <span class="jsonkey">isAlive</span>)</p>
+<li><p class="first"><strong>Boolean</strong>: either <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> (as in <span class="jsonkey">isAlive</span>)</p>
 </li>
 <li><p class="first"><strong>Number</strong>: one or more digits (with no quotation marks) (as in <span class="jsonkey">age</span>)</p>
 <blockquote>
 <div><div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">In JSON there is no difference between integer and floating point representation. Every number is stored as a <code class="docutils literal"><span class="pre">double</span></code>.</p>
+<p class="last">In JSON there is no difference between integer and floating point representation. Every number is stored as a <code class="docutils literal notranslate"><span class="pre">double</span></code>.</p>
 </div>
 </div></blockquote>
 </li>
@@ -242,7 +245,7 @@
 </li>
 <li><p class="first"><strong>Array</strong>: a series of values (of any type), enclosed in square brackets (as in <span class="jsonkey">phoneNumbers</span>)</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">null</span></code>: an empty value (as in <span class="jsonkey">spouse</span>)</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">null</span></code>: an empty value (as in <span class="jsonkey">spouse</span>)</p>
 </li>
 </ul>
 </div></blockquote>
@@ -276,16 +279,16 @@
 <div class="section" id="how-to-use-json">
 <h2>1.3. How to Use JSON<a class="headerlink" href="#how-to-use-json" title="Permalink to this headline">¶</a></h2>
 <p>There are two ways of using the JSON interface with Tudat. In the first case, you can write a full numerical simulation in a JSON file which provides propagation output, whereas in the second option is to use a JSON file to load simulation settings and extend it with C++ code yourself. The latter is usefult if, for example, you need to write a custom guidance algorithm for your application. The second interface is explained in <a class="reference internal" href="tutorials/lifetimeMaximisationCPP/index.html#jsoninterface-tutorials-lifetimemaximisationcpp"><span class="std std-ref">Perturbed Earth-orbiting Satellite Lifetime Maximisation Using a Custom C++ Application</span></a>.  The first option can be called in Terminal and Qt by following the procedure below.</p>
-<p>The <code class="docutils literal"><span class="pre">json_interface</span></code> application can be used to run Tudat propagations by providing the path to a JSON input file as command-line argument in Terminal:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">//</span> <span class="n">insert</span> <span class="n">the</span> <span class="n">path</span> <span class="n">to</span> <span class="n">the</span> <span class="n">JSON</span> <span class="n">application</span> <span class="n">file</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">json_interface</span></code> application can be used to run Tudat propagations by providing the path to a JSON input file as command-line argument in Terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">//</span> <span class="n">insert</span> <span class="n">the</span> <span class="n">path</span> <span class="n">to</span> <span class="n">the</span> <span class="n">JSON</span> <span class="n">application</span> <span class="n">file</span>
 <span class="n">tudatBundle</span><span class="o">/</span><span class="n">tudat</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">json_interface</span> <span class="n">main</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The extension can be omitted, in which case <code class="docutils literal"><span class="pre">.json</span></code> will be assumed. The argument can also be the path to a directory containing a <code class="docutils literal"><span class="pre">main.json</span></code> file, and it can be omitted if a <code class="docutils literal"><span class="pre">main.json</span></code> file exists in the current directory.</p>
+<p class="last">The extension can be omitted, in which case <code class="docutils literal notranslate"><span class="pre">.json</span></code> will be assumed. The argument can also be the path to a directory containing a <code class="docutils literal notranslate"><span class="pre">main.json</span></code> file, and it can be omitted if a <code class="docutils literal notranslate"><span class="pre">main.json</span></code> file exists in the current directory.</p>
 </div>
-<p>It is also possible to use the <code class="docutils literal"><span class="pre">json_interface</span></code> application from Qt Creator. In the Projects &gt; Run tab, choose <code class="docutils literal"><span class="pre">json_interface</span></code> in “Run configuration” and write the (absolute) path to your input file in “Command line arguments”, as shown in the image below.</p>
+<p>It is also possible to use the <code class="docutils literal notranslate"><span class="pre">json_interface</span></code> application from Qt Creator. In the Projects &gt; Run tab, choose <code class="docutils literal notranslate"><span class="pre">json_interface</span></code> in “Run configuration” and write the (absolute) path to your input file in “Command line arguments”, as shown in the image below.</p>
 <img alt="../../_images/qt.png" src="../../_images/qt.png" />
 <p>Note that details about the contents of the JSON file is explained in the upcoming <a class="reference internal" href="tutorials/index.html#jsoninterface-tutorials"><span class="std std-ref">Tutorials</span></a> page.</p>
 </div>
@@ -346,7 +349,8 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
