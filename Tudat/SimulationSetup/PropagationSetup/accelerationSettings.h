@@ -539,6 +539,27 @@ public:
 
 };
 
+class YarkovskyAccelerationSettings: public AccelerationSettings
+{
+public:
+
+	YarkovskyAccelerationSettings( const double phaseLag, const double density,
+								   const double diameter, const double efficiencyFactor,
+								   const double stellarLuminosity,
+								   Eigen::Vector3d spinAxis ):
+								   AccelerationSettings( basic_astrodynamics::yarkovsky_acceleration ),
+								   phaseLag_( phaseLag ), density_( density ),
+								   diameter_( diameter ), efficiencyFactor_( efficiencyFactor ),
+								   stellarLuminosity_( stellarLuminosity ), spinAxis_( spinAxis ){ }
+
+	double phaseLag_;
+	double density_;
+	double diameter_;
+	double efficiencyFactor_;
+	double stellarLuminosity_;
+	Eigen::Vector3d spinAxis_;
+};
+
 //! Typedef defining a list of acceleration settings, set up in the same manner as the
 //! AccelerationMap typedef.
 typedef std::map< std::string, std::map< std::string, std::vector< std::shared_ptr< AccelerationSettings > > > >

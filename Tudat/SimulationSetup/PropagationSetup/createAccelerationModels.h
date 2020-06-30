@@ -27,6 +27,7 @@
 #include "Tudat/Astrodynamics/BasicAstrodynamics/empiricalAcceleration.h"
 #include "Tudat/Astrodynamics/Ephemerides/frameManager.h"
 #include "Tudat/Astrodynamics/Gravitation/directTidalDissipationAcceleration.h"
+#include "Tudat/Astrodynamics/ElectroMagnetism/yarkovskyAcceleration.h"
 
 namespace tudat
 {
@@ -343,6 +344,23 @@ createSolarSailAccelerationModel(const std::shared_ptr< Body > bodyUndergoingAcc
                                  const std::shared_ptr< Body > centralBody,
                                  const std::string& nameOfBodyUndergoingAcceleration,
                                  const std::string& nameOfBodyExertingAcceleration);
+
+//! Function to create a Yarkovsky effect acceleration.
+/*!
+ * Function to create a Yarkovsky effect acceleration.
+ *  \param bodyUndergoingAcceleration Pointer to object of body that is being accelerated.
+ *  \param bodyExertingAcceleration Pointer to object of body that is exerting the acceleration.
+ *  \param nameOfBodyUndergoingAcceleration Name of body that is being accelerated.
+ *  \param nameOfBodyExertingAcceleration Name of body that is exerting the acceleration.
+ *  \return Yarkovsky acceleration model pointer.
+ */
+std::shared_ptr< electro_magnetism::YarkovskyAcceleration >
+createYarkovskyAccelerationModel( const std::shared_ptr< Body > bodyUndergoingAcceleration,
+								  const std::shared_ptr< Body > bodyExertingAcceleration,
+								  const std::string& nameOfBodyUndergoingAcceleration,
+								  const std::string& nameOfBodyExertingAcceleration,
+								  const std::shared_ptr< AccelerationSettings > accelerationSettings );
+
 
 //! Function to create a thrust acceleration model.
 /*!

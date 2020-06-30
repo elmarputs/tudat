@@ -863,6 +863,35 @@ std::shared_ptr< SolarSailAcceleration > createSolarSailAccelerationModel(
 
 }
 
+std::shared_ptr< electro_magnetism::YarkovskyAcceleration >
+createYarkovskyAccelerationModel( const std::shared_ptr<Body> bodyUndergoingAcceleration,
+								  const std::shared_ptr<Body> bodyExertingAcceleration,
+								  const std::string &nameOfBodyUndergoingAcceleration,
+							  	  const std::string &nameOfBodyExertingAcceleration,
+								  const std::shared_ptr< AccelerationSettings > accelerationSettings )
+{
+
+	std::shared_ptr< YarkovskyAccelerationSettings > yarkovskyAccelerationSettings =
+			std::dynamic_pointer_cast< YarkovskyAccelerationSettings >(
+					accelerationSettings );
+	if( yarkovskyAccelerationSettings == nullptr )
+	{
+		throw std::runtime_error( "Error, expected Yarkovsky acceleration settings when making acceleration model on " +
+								  nameOfBodyUndergoingAcceleration + " due to " + nameOfBodyExertingAcceleration );
+	}
+	else
+	{
+		return std::make_shared< YarkovskyAcceleration >(
+				std::bind( &Body::getPosition, bodyExertingAcceleration ),
+				std::bind( &Body::getPosition, bodyUndergoingAcceleration ),
+				yarkovskyAccelerationSettings->spinAxis_,
+				yarkovskyAccelerationSettings->stellarLuminosity_,
+				yarkovskyAccelerationSettings->efficiencyFactor_,
+				yarkovskyAccelerationSettings->diameter_,
+				yarkovskyAccelerationSettings->density_,
+				yarkovskyAccelerationSettings->phaseLag_ );
+	}
+}
 
 //! Function to create an orbiter relativistic correction acceleration model
 std::shared_ptr< relativity::RelativisticAccelerationCorrection > createRelativisticCorrectionAcceleration(
@@ -1395,6 +1424,15 @@ std::shared_ptr< AccelerationModel< Eigen::Vector3d > > createAccelerationModel(
                     nameOfBodyUndergoingAcceleration,
                     nameOfBodyExertingAcceleration );
         break;
+	case yarkovsky_acceleration:
+		accelerationModelPointer = createYarkovskyAccelerationModel(
+					bodyUndergoingAcceleration,
+					bodyExertingAcceleration,
+					nameOfBodyUndergoingAcceleration,
+					nameOfBodyExertingAcceleration,
+					accelerationSettings
+				);
+		break;
     default:
         throw std::runtime_error(
                     std::string( "Error, acceleration model ") +

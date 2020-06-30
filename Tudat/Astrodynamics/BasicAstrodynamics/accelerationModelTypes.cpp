@@ -71,6 +71,9 @@ std::string getAccelerationModelName( const AvailableAcceleration accelerationTy
     case solar_sail_acceleration:
         accelerationName = "solar sail acceleration";
         break;
+	case yarkovsky_acceleration:
+    	accelerationName = "Yarkovsky acceleration";
+    	break;
     default:
         std::string errorMessage = "Error, acceleration type " +
                 std::to_string( accelerationType ) +
@@ -92,7 +95,7 @@ AvailableAcceleration getAccelerationModelType(
     // Nominal type is undefined
     AvailableAcceleration accelerationType = undefined_acceleration;
 
-    // Check for each accelerarion mdoel type implemented as AvailableAcceleration.
+    // Check for each acceleration model type implemented as AvailableAcceleration.
     if( std::dynamic_pointer_cast< CentralGravitationalAccelerationModel3d >(
                 accelerationModel ) != nullptr )
     {
@@ -164,14 +167,18 @@ AvailableAcceleration getAccelerationModelType(
             accelerationType = direct_tidal_dissipation_in_orbiting_body_acceleration;
         }
     }
-    else if( std::dynamic_pointer_cast< PanelledRadiationPressureAcceleration >( accelerationModel ) != NULL )
+    else if( std::dynamic_pointer_cast< PanelledRadiationPressureAcceleration >( accelerationModel ) != nullptr )
     {
         accelerationType = panelled_radiation_pressure_acceleration;
     }
-    else if ( std::dynamic_pointer_cast< SolarSailAcceleration >( accelerationModel) != NULL )
+    else if ( std::dynamic_pointer_cast< SolarSailAcceleration >( accelerationModel ) != nullptr )
     {
         accelerationType = solar_sail_acceleration;
     }
+    else if ( std::dynamic_pointer_cast< YarkovskyAcceleration >( accelerationModel ) != nullptr )
+	{
+    	accelerationType = yarkovsky_acceleration;
+	}
     else
     {
         throw std::runtime_error(

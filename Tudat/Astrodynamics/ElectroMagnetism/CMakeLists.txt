@@ -19,6 +19,7 @@ set(ELECTROMAGNETISM_SOURCES
   "${SRCROOT}${ELECTROMAGNETISMDIR}/panelledRadiationPressure.h"
   "${SRCROOT}${ELECTROMAGNETISMDIR}/solarSailAcceleration.h"
   "${SRCROOT}${ELECTROMAGNETISMDIR}/solarSailForce.h"
+	"${SRCROOT}${ELECTROMAGNETISMDIR}/yarkovskyAcceleration.h"
 )
 
 # Set the header files.
@@ -31,6 +32,7 @@ set(ELECTROMAGNETISM_HEADERS
   "${SRCROOT}${ELECTROMAGNETISMDIR}/panelledRadiationPressure.cpp"
   "${SRCROOT}${ELECTROMAGNETISMDIR}/solarSailAcceleration.cpp"
   "${SRCROOT}${ELECTROMAGNETISMDIR}/solarSailForce.cpp"
+	"${SRCROOT}${ELECTROMAGNETISMDIR}/yarkovskyAcceleration.cpp"
 )
 
 # Add static libraries.
