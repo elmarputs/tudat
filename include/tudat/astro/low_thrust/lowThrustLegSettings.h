@@ -301,6 +301,37 @@ std::shared_ptr< low_thrust_trajectories::LowThrustLeg  > createLowThrustLeg(
         const Eigen::Vector6d& stateAtArrival,
         const double& timeOfFlight );
 
+inline std::shared_ptr< low_thrust_trajectories::LowThrustLegSettings > hodographicShapingLegSettings(
+		const int numberOfRevolutions,
+		const double centralBodyGravitationalParameter,
+		std::vector< std::shared_ptr< shape_based_methods::BaseFunctionHodographicShaping > >& radialVelocityFunctionComponents,
+		std::vector< std::shared_ptr< shape_based_methods::BaseFunctionHodographicShaping > >& normalVelocityFunctionComponents,
+		std::vector< std::shared_ptr< shape_based_methods::BaseFunctionHodographicShaping > >& axialVelocityFunctionComponents,
+		const Eigen::VectorXd freeCoefficientsRadialVelocityFunction,
+		const Eigen::VectorXd freeCoefficientsNormalVelocityFunction,
+		const Eigen::VectorXd freeCoefficientsAxialVelocityFunction
+		)
+{
+	return std::make_shared< low_thrust_trajectories::HodographicShapingLegSettings >(
+			numberOfRevolutions, centralBodyGravitationalParameter,
+			radialVelocityFunctionComponents, normalVelocityFunctionComponents, axialVelocityFunctionComponents,
+			freeCoefficientsRadialVelocityFunction, freeCoefficientsNormalVelocityFunction, freeCoefficientsAxialVelocityFunction
+			);
+}
+
+inline std::shared_ptr< low_thrust_trajectories::LowThrustLegSettings > sphericalShapingLegSettings(
+		const int numberOfRevolutions,
+		const double centralBodyGravitationalParameter,
+		const double initialValueFreeCoefficient,
+		const std::shared_ptr< root_finders::RootFinderSettings >& rootFinderSettings,
+		const std::pair< double, double > boundsFreeCoefficient = std::make_pair( TUDAT_NAN, TUDAT_NAN )
+		)
+{
+	return std::make_shared< low_thrust_trajectories::SphericalShapingLegSettings >(
+			numberOfRevolutions, centralBodyGravitationalParameter, initialValueFreeCoefficient,
+			rootFinderSettings, boundsFreeCoefficient );
+}
+
 } // namespace low_thrust_trajectories
 
 } // namespace tudat

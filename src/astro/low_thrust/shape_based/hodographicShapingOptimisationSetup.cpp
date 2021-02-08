@@ -34,7 +34,7 @@ std::vector< double > FixedTimeHodographicShapingOptimisationProblem::fitness( c
     if( numberFreeCoefficientsRadialFunction + numberFreeCoefficientsNormalFunction + numberFreeCoefficientsAxialFunction !=
             static_cast< int >( x.size( ) ) )
     {
-        throw std::runtime_error( "Error, size of design variables vector unconsistent with number of base function components"
+        throw std::runtime_error( "Error, size of design variables vector inconsistent with number of base function components"
                                   "when making a hodographic shaping optimisation problem." );
     }
 
@@ -88,7 +88,7 @@ std::vector< double > HodographicShapingOptimisationProblem::fitness( const std:
     if( numberFreeCoefficientsRadialFunction + numberFreeCoefficientsNormalFunction + numberFreeCoefficientsAxialFunction + 5 !=
             static_cast< int >( x.size( ) ) )
     {
-        throw std::runtime_error( "Error, size of design variables vector unconsistent with number of base function components"
+        throw std::runtime_error( "Error, size of design variables vector inconsistent with number of base function components"
                                   "when making a hodographic shaping optimisation problem." );
     }
 

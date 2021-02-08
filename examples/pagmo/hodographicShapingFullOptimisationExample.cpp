@@ -13,21 +13,22 @@
 #include <functional>
 
 #include <boost/filesystem.hpp>
-#include "Problems/applicationOutput.h"
-#include "Problems/getAlgorithm.h"
-#include "Problems/saveOptimizationResults.h"
+#include "problems/applicationOutput.h"
+#include "problems/getAlgorithm.h"
+#include "problems/saveOptimizationResults.h"
 
-#include "tudat/simulation/simulation.h"
-#include "tudat/astro/LowThrustTrajectories/lowThrustOptimisationSetup.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/hodographicShaping.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/sphericalShaping.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/createBaseFunctionHodographicShaping.h"
-#include "tudat/astro/LowThrustTrajectories/lowThrustLegSettings.h"
-#include "tudat/astro/LowThrustTrajectories/lowThrustLeg.h"
-#include "tudat/astro/ephemerides/approximatePlanetPositions.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/hodographicShapingOptimisationSetup.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/getRecommendedBaseFunctionsHodographicShaping.h"
-#include "tudat/simulation/optimisationSettings.h"
+#include <tudat/simulation/simulation.h>
+#include <tudat/astro/low_thrust/lowThrustOptimisationSetup.h>
+#include <tudat/astro/low_thrust/shape_based/hodographicShaping.h>
+#include <tudat/astro/low_thrust/shape_based/sphericalShaping.h>
+#include <tudat/astro/low_thrust/shape_based/createBaseFunctionHodographicShaping.h>
+#include <tudat/astro/low_thrust/lowThrustLegSettings.h>
+#include <tudat/astro/low_thrust/lowThrustLeg.h>
+#include <tudat/astro/ephemerides/approximatePlanetPositions.h>
+#include <tudat/astro/low_thrust/shape_based/hodographicShapingOptimisationSetup.h>
+#include <tudat/astro/low_thrust/shape_based/getRecommendedBaseFunctionsHodographicShaping.h>
+//#include <tudat/simulation/optimisationSettings.h>
+#include <tudat/simulation/optimisation.h>
 
 using namespace tudat;
 using namespace tudat::shape_based_methods;

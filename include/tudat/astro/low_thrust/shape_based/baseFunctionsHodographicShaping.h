@@ -95,6 +95,12 @@ public:
         return independentVariable;
     }
 
+	template <typename Archive>
+	void serialize(Archive &ar)
+	{
+		ar();
+	}
+
 protected:
 
 private:
@@ -123,11 +129,17 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	template <typename Archive>
+	void serialize(Archive &ar)
+	{
+		ar(frequency_);
+	}
+
+	double frequency_;
 
 protected:
 
 private:
-    double frequency_;
 };
 
 
@@ -152,11 +164,18 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	template <typename Archive>
+	void serialize(Archive &ar)
+	{
+		ar(frequency_);
+	}
+
+	double frequency_;
 
 protected:
 
 private:
-    double frequency_;
+
 };
 
 
@@ -180,11 +199,12 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	double exponent_;
 
 protected:
 
 private:
-    double exponent_;
+
 
 };
 
@@ -209,12 +229,13 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	double exponent_;
+	double scaleFactor_;
 
 protected:
 
 private:
-    double exponent_;
-    double scaleFactor_;
+
 };
 
 //! Exponential times sine function.
@@ -239,12 +260,13 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	double exponentExponentialFunction_;
+	double frequencySineFunction_;
 
 protected:
 
 private:
-    double exponentExponentialFunction_;
-    double frequencySineFunction_;
+
 };
 
 //! Scaled exponential times sine function.
@@ -252,30 +274,32 @@ class ScaledExponentialSineFunctionHodographicShaping : public BaseFunctionHodog
 {
 public:
 
-    //! Constructor taking exponent of the exponential function, frequency of the sine function, and scaling factor as inputs.
-    ScaledExponentialSineFunctionHodographicShaping( double exponentExponentialFunction, double frequencySineFunction, double scaleFactor )
-    {
-        exponentExponentialFunction_ = exponentExponentialFunction;
-        frequencySineFunction_ = frequencySineFunction;
-        scaleFactor_ = scaleFactor;
-    }
+	//! Constructor taking exponent of the exponential function, frequency of the sine function, and scaling factor as inputs.
+	ScaledExponentialSineFunctionHodographicShaping( double exponentExponentialFunction, double frequencySineFunction, double scaleFactor )
+	{
+		exponentExponentialFunction_ = exponentExponentialFunction;
+		frequencySineFunction_ = frequencySineFunction;
+		scaleFactor_ = scaleFactor;
+	}
 
-    //! Default destructor.
-    ~ScaledExponentialSineFunctionHodographicShaping( ) { }
+	//! Default destructor.
+	~ScaledExponentialSineFunctionHodographicShaping( )
+	{}
 
-    double evaluateFunction( const double independentVariable );
+	double evaluateFunction( const double independentVariable );
 
-    double evaluateDerivative( const double independentVariable );
+	double evaluateDerivative( const double independentVariable );
 
-    double evaluateIntegral( const double independentVariable );
+	double evaluateIntegral( const double independentVariable );
 
+	double exponentExponentialFunction_;
+	double frequencySineFunction_;
+	double scaleFactor_;
 
 protected:
 
 private:
-    double exponentExponentialFunction_;
-    double frequencySineFunction_;
-    double scaleFactor_;
+
 };
 
 //! Exponential times cosine function.
@@ -300,12 +324,9 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	double exponentExponentialFunction_;
+	double frequencyCosineFunction_;
 
-protected:
-
-private:
-    double exponentExponentialFunction_;
-    double frequencyCosineFunction_;
 };
 
 
@@ -331,13 +352,10 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	double exponentExponentialFunction_;
+	double frequencyCosineFunction_;
+	double scaleFactor_;
 
-protected:
-
-private:
-    double exponentExponentialFunction_;
-    double frequencyCosineFunction_;
-    double scaleFactor_;
 };
 
 
@@ -362,10 +380,6 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
-
-protected:
-
-private:
     double exponent_;
 
 };
@@ -392,12 +406,8 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
-
-protected:
-
-private:
-    double exponent_;
-    double scaleFactor_;
+	double exponent_;
+	double scaleFactor_;
 };
 
 
@@ -423,12 +433,9 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	double exponentPowerFunction_;
+	double frequencySineFunction_;
 
-protected:
-
-private:
-    double exponentPowerFunction_;
-    double frequencySineFunction_;
 };
 
 
@@ -452,13 +459,15 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	template <typename Archive>
+	void serialize(Archive &ar)
+	{
+		ar(exponentPowerFunction_, frequencySineFunction_, scaleFactor_);
+	}
 
-protected:
-
-private:
-    double exponentPowerFunction_;
-    double frequencySineFunction_;
-    double scaleFactor_;
+	double exponentPowerFunction_;
+	double frequencySineFunction_;
+	double scaleFactor_;
 };
 
 
@@ -484,12 +493,9 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	double exponentPowerFunction_;
+	double frequencyCosineFunction_;
 
-protected:
-
-private:
-    double exponentPowerFunction_;
-    double frequencyCosineFunction_;
 };
 
 
@@ -513,13 +519,15 @@ public:
 
     double evaluateIntegral( const double independentVariable );
 
+	template <typename Archive>
+	void serialize(Archive &ar)
+	{
+		ar(exponentPowerFunction_, frequencyCosineFunction_, scaleFactor_);
+	}
 
-protected:
-
-private:
-    double exponentPowerFunction_;
-    double frequencyCosineFunction_;
-    double scaleFactor_;
+	double exponentPowerFunction_;
+	double frequencyCosineFunction_;
+	double scaleFactor_;
 };
 
 inline std::shared_ptr< BaseFunctionHodographicShaping >  hodographConstant( )

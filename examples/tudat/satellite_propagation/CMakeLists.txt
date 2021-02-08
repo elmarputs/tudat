@@ -22,3 +22,11 @@ TUDAT_ADD_EXECUTABLE(application_EarthOrbiterBasicStateEstimation
         "earthOrbiterBasicStateEstimation.cpp"
         ${Tudat_ESTIMATION_LIBRARIES}
         )
+
+TUDAT_ADD_EXECUTABLE(application_ShapeBasedTrajectoryDesign
+				"shapeBasedTrajectoryDesign.cpp"
+				${Tudat_PROPAGATION_LIBRARIES}
+				Tudat::tudat_numerical_quadrature
+				Tudat::tudat_low_thrust_trajectories
+				Tudat::tudat_shape_based_methods
+				)

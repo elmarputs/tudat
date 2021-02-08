@@ -11,9 +11,9 @@ add_subdirectory(problems)
 #endif()
 
 
-TUDAT_ADD_EXECUTABLE(application_PagmoHimmelblauOptimization
-        "himmelblauOptimization.cpp"
-        tudat_pagmo_example_problems tudat_input_output ${Boost_LIBRARIES} )
+#TUDAT_ADD_EXECUTABLE(application_PagmoHimmelblauOptimization
+#        "himmelblauOptimization.cpp"
+#        tudat_pagmo_example_problems tudat_input_output ${Boost_LIBRARIES} )
 
 #add_executable(application_PagmoHimmelblauOptimization "${SRCROOT}/himmelblauOptimization.cpp")
 #setup_executable_target(application_PagmoHimmelblauOptimization "${SRCROOT}")
@@ -40,7 +40,6 @@ TUDAT_ADD_EXECUTABLE(application_PagmoHimmelblauOptimization
 #target_link_libraries(application_PagmoPropagationTargetingExample pagmo pagmo2_library_example_problems ${Tudat_PROPAGATION_LIBRARIES}
 #      pthread ${Boost_LIBRARIES} )
 
-#if( BUILD_WITH_SOCIS_2019 )
 
 # add_executable(application_PagmoHodographicShapingTrajectoryExample "${SRCROOT}/hodographicShapingTrajectoryExample.cpp")
 # setup_executable_target(application_PagmoHodographicShapingTrajectoryExample "${SRCROOT}")
@@ -52,10 +51,18 @@ TUDAT_ADD_EXECUTABLE(application_PagmoHimmelblauOptimization
 # target_link_libraries(application_PagmoHodographicShapingFullOptimisation tudat_shape_based_methods tudat_low_thrust_trajectories
 #     tudat_numerical_quadrature pagmo ${Tudat_PROPAGATION_LIBRARIES} ${Boost_LIBRARIES} )
 
+TUDAT_ADD_EXECUTABLE(application_PagmoHodographicShapingFullOptimisation
+        "hodographicShapingFullOptimisationExample.cpp"
+				${Tudat_PROPAGATION_LIBRARIES}
+				Tudat::tudat_numerical_quadrature
+				Tudat::tudat_low_thrust_trajectories
+				Tudat::tudat_shape_based_methods
+				pagmo ${Boost_LIBRARIES} )
+
+
 ## # Add low-thrust trajectory design example
 ## add_executable(application_PagmoSimsFlanaganTrajectoryExample "${SRCROOT}/simsFlanaganTrajectoryExample.cpp")
 ## setup_executable_target(application_PagmoSimsFlanaganTrajectoryExample "${SRCROOT}")
 ## target_link_libraries(application_PagmoSimsFlanaganTrajectoryExample pagmo2_library_example_problems tudat_low_thrust_trajectories tudat_shape_based_methods
 ##     tudat_numerical_quadrature ${Tudat_PROPAGATION_LIBRARIES} pthread pagmo ${Boost_LIBRARIES} )
 
-#endif( )

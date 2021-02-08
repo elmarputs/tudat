@@ -26,6 +26,10 @@ file(READ "version" Tudat_VERSION)
 # Specific project name.
 project(Tudat VERSION ${Tudat_VERSION} LANGUAGES C CXX)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Get lower string name of PROJECT_NAME for directory configuration.
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
@@ -245,10 +249,10 @@ if (APPLE OR (WIN32 AND CLANG))
 endif ()
 
 
-# Sofa dependency if in build settings.
+# Pagmo dependency if in build settings.
 if (TUDAT_BUILD_WITH_PAGMO)
     #
-    add_definitions(-DTUDAT_BUILD_WITH_PAGMO1)
+    add_definitions(-DTUDAT_BUILD_WITH_PAGMO=1)
     if (${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
         find_package(Pagmo REQUIRED)
     elseif (NOT ${TUDAT_BUNDLE_BUILD})

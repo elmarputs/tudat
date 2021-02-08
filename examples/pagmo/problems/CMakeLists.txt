@@ -24,10 +24,10 @@ set(Tudat_example_problems_SOURCES
 )
 
 
-TUDAT_ADD_LIBRARY("pagmo_example_problems"
-        "${Tudat_example_problems_SOURCES}"
-        "${Tudat_example_problems_HEADERS}"
-        )
+#TUDAT_ADD_LIBRARY("pagmo_example_problems"
+#        "${Tudat_example_problems_SOURCES}"
+#        "${Tudat_example_problems_HEADERS}"
+#        )
 
 
 #add_library(pagmo2_library_example_problems STATIC ${Tudat_example_problems_SOURCES} ${Tudat_example_problems_HEADERS})

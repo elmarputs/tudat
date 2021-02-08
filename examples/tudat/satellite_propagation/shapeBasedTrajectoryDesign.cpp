@@ -8,22 +8,16 @@
  *    http://tudat.tudelft.nl/LICENSE.
  */
 
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
-
-#include <Eigen/Core>
-#include <tudat/basics/testMacros.h>
-
 #include <tudat/simulation/simulation.h>
 #include <tudat/io/basicInputOutput.h>
 #include <tudat/io/applicationOutput.h>
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/compositeFunctionHodographicShaping.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/hodographicShaping.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/baseFunctionsHodographicShaping.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/createBaseFunctionHodographicShaping.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/baseFunctionsSphericalShaping.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/compositeFunctionSphericalShaping.h"
-#include "tudat/astro/LowThrustTrajectories/ShapeBasedMethods/sphericalShaping.h"
+#include "tudat/astro/low_thrust/shape_based/compositeFunctionHodographicShaping.h"
+#include "tudat/astro/low_thrust/shape_based/hodographicShaping.h"
+#include "tudat/astro/low_thrust/shape_based/baseFunctionsHodographicShaping.h"
+#include "tudat/astro/low_thrust/shape_based/createBaseFunctionHodographicShaping.h"
+#include "tudat/astro/low_thrust/shape_based/baseFunctionsSphericalShaping.h"
+#include "tudat/astro/low_thrust/shape_based/compositeFunctionSphericalShaping.h"
+#include "tudat/astro/low_thrust/shape_based/sphericalShaping.h"
 #include "tudat/astro/ephemerides/approximatePlanetPositions.h"
 #include "tudat/simulation/simulation.h"
 #include "tudat/interface/spice/spiceEphemeris.h"
@@ -42,7 +36,7 @@ SystemOfBodies getBetBodyMap( )
     bodiesToCreate.push_back( "Mars" );
     bodiesToCreate.push_back( "Jupiter" );
 
-    std::map< std::string, std::shared_ptr< simulation_setup::BodySettings > > bodySettings =
+    BodyListSettings bodySettings =
             simulation_setup::getDefaultBodySettings( bodiesToCreate );
 
     std::string frameOrigin = "SSB";
@@ -50,17 +44,17 @@ SystemOfBodies getBetBodyMap( )
 
 
     // Define central body ephemeris settings.
-    bodySettings[ "Sun" ]->ephemerisSettings = std::make_shared< simulation_setup::ConstantEphemerisSettings >(
+    bodySettings.at( "Sun" )->ephemerisSettings = std::make_shared< simulation_setup::ConstantEphemerisSettings >(
                 ( Eigen::Vector6d( ) << 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ).finished( ), frameOrigin, frameOrientation );
 
-    bodySettings[ "Sun" ]->ephemerisSettings->resetFrameOrientation( frameOrientation );
-    bodySettings[ "Sun" ]->rotationModelSettings->resetOriginalFrame( frameOrientation );
+    bodySettings.at( "Sun" )->ephemerisSettings->resetFrameOrientation( frameOrientation );
+    bodySettings.at( "Sun" )->rotationModelSettings->resetOriginalFrame( frameOrientation );
 
 
     // Create system of bodies.
-    simulation_setup::SystemOfBodies bodies = createBodies( bodySettings );
+    simulation_setup::SystemOfBodies bodies = createSystemOfBodies( bodySettings );
 
-    bodies[ "Borzi" ] = std::make_shared< simulation_setup::Body >( );
+    bodies.createEmptyBody( "Borzi" );
     bodies.at( "Borzi" )->setSuppressDependentOrientationCalculatorWarning( true );
     bodies.at( "Borzi" )->setEphemeris( std::make_shared< ephemerides::TabulatedCartesianEphemeris< > >(
                                                          std::shared_ptr< interpolators::OneDimensionalInterpolator
@@ -76,11 +70,10 @@ SystemOfBodies getBetBodyMap( )
                 "Sun", referenceAreaRadiation, radiationPressureCoefficient, occultingBodies );
 
     // Create and set radiation pressure settings
-    bodies[ "Borzi" ]->setRadiationPressureInterface(
+    bodies.at( "Borzi" )->setRadiationPressureInterface(
                 "Sun", createRadiationPressureInterface(
                     asterixRadiationPressureSettings, "Borzi", bodies ) );
 
-    setGlobalFrameBodyEphemerides( bodies, frameOrigin, frameOrientation );
 
     return bodies;
 }
@@ -213,7 +206,7 @@ int main( )
 
     // Set vehicle mass.
     SystemOfBodies bodies = getBetBodyMap( );
-    bodies[ "Borzi" ]->setConstantBodyMass( vehicleInitialMass );
+    bodies.at( "Borzi" )->setConstantBodyMass( vehicleInitialMass );
 
 
     // Define body to propagate and central body.
