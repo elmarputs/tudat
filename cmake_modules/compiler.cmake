@@ -25,7 +25,7 @@
  message(STATUS "CMAKE_CXX_SIMULATE_ID: ${CMAKE_CXX_SIMULATE_ID}")
  message(STATUS "CMAKE_CXX_COMPILER_VERSION: ${CMAKE_CXX_COMPILER_VERSION}")
 
- add_compile_definitions(CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
+ add_compile_definitions(CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} BOOST_ALLOW_DEPRECATED_HEADERS)
 
  # Provide options to force building with GNU or Clang, if the standard compiler is not desired
  option(USE_CLANG "Force build with clang (if gcc is standard)" OFF) # OFF is the default
